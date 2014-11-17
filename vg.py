@@ -3,8 +3,11 @@ import http.cookiejar
 from sys import argv
 from xml.sax.saxutils import unescape
 import os
-vgmuserid = "xxxx"  # replace this with your user id
-vgmpassword = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # replace this with your vgmpassword (from cookies)
+import json
+config = json.load(open('config.txt', 'r'))
+
+vgmuserid = config["userid"]  # replace this with your user id
+vgmpassword = config["password"] # replace this with your vgmpassword (from cookies)
 def remove(instring, chars):
     for i in range(len(chars)):
         instring = instring.replace(chars[i],"")
