@@ -4,7 +4,8 @@ from sys import argv
 from xml.sax.saxutils import unescape
 import os
 import json
-config = json.load(open('config.txt', 'r'))
+scriptdir = "\\".join(argv[0].split("\\")[0:-1])
+config = json.load(open(os.path.join(scriptdir,'config.txt'), 'r'))
 
 vgmuserid = config["userid"]  # replace this with your user id
 vgmpassword = config["password"] # replace this with your vgmpassword (from cookies)
