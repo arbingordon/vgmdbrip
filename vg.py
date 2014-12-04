@@ -48,9 +48,10 @@ maintitle = ""
 for i in range(len(mainpage)):
     if(mainpage[i].find("<h1><span class=\"albumtitle\"") != -1):
         maintitle = remove(substring(mainpage[i], "\">", "</span>"), "\"*/:<>?\|")
-        print(maintitle)
+        #print(maintitle)
         break
 
+fldr = "Scans (VGMdb)"
 for i in range(len(mainpage)):
     if(mainpage[i].find(">Covers") != -1):
         i += 8
@@ -58,8 +59,8 @@ for i in range(len(mainpage)):
             ID = substring(mainpage[i], "cover=", "\"")
             title = unescape(substring(mainpage[i], ID + "\">", "</a>"))
             image = opener.open("http://vgmdb.net/db/covers-full.php?id=" + ID).read()
-            ensure_dir("Scans\\")
-            handle = open("Scans\\" + remove(title, "\"*/:<>?\|") + ".jpg", "wb")
+            ensure_dir(fldr + os.sep)
+            handle = open(fldr + os.sep + remove(title, "\"*/:<>?\|") + ".jpg", "wb")
             handle.write(image)
             handle.close()
             print("FOUND cover on line " + str(i+1) + " : ID " + ID + " : title " + title + " -> SAVED!")
