@@ -45,10 +45,18 @@ cj.set_cookie(http.cookiejar.Cookie(0, 'vgmpassword', vgmpassword,
                                True, False, None, False, None, None, None))
 opener = urllib.request.build_opener(cp)
 opener.addheaders.append(('User-agent', 'Mozilla/5.0 (compatible)'))
-soup = BeautifulSoup(opener.open("http://vgmdb.net/album/" + argv[1]).read())
+soup = ""
+if(argv[1].isnumeric()):
+  soup = BeautifulSoup(opener.open("http://vgmdb.net/album/" + argv[1]).read())
+else:
+  query = " ".join(argv[1:])
+  soup = BeautifulSoup(opener.open("http://vgmdb.net/search?q=\"" + query + "\"").read())
+  if(soup.title.text[:6] == "Search"):
+    print("stuck at search results")
+    exit(1)
 
-maintitle = soup.find("span", attrs={"class" : "albumtitle"})
-#print(maintitle.text)
+maintitle = soup.find("title")
+print(maintitle.text)
 
 fldr = "Scans (VGMdb)"
 for scan in soup.find("div", attrs={"class" : "covertab",  "id" : "cover_list"}).find_all("a"):
