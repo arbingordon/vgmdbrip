@@ -2,9 +2,13 @@ requirements:
 Python 3.3 must be installed
 
 usage:
+
 python3 vg.py  vgmdb_album_id
+
 python3 vgbs.py  vgmdb_album_id
+
 python3 vgbs.py  search string
+
 
 * Step 1: Log into VGMdb using your browser of choice
 
