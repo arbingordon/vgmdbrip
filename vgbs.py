@@ -60,7 +60,8 @@ print(maintitle.text)
 
 fldr = "Scans (VGMdb)"
 for scan in soup.find("div", attrs={"class" : "covertab",  "id" : "cover_list"}).find_all("a"):
-  url = "http://vgmdb.net/" + scan["href"]
+  id = scan["href"].split("=")[2]
+  url = "http://vgmdb.net/db/covers-full.php?id=" + id
   image = opener.open(url).read()
   title = scan.text
   ensure_dir(fldr + os.sep)
