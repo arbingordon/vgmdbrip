@@ -1,22 +1,16 @@
 requirements:
-Python 3.3 must be installed
+Python 3.x
+bs4
+requests
+(install with "pip install bs4 requests")
+
+setup:
+edit config.txt with your vgmdb username and password
 
 usage:
-
 python3 vg.py  vgmdb_album_id
-
-python3 vgbs.py  vgmdb_album_id
-
-python3 vgbs.py  search string
-
-
-* Step 1: Log into VGMdb using your browser of choice
-
-* Step 2: Search your cookies for a vgmdb cookie titled vgmuserid and vgmpassword, replace those fields in config.txt with your information
-
-* Step 3: vgmdb_album_id is the ID of the album you want to leech the pictures for
+python3 vg.py  search string
 
 example for Super Mario 64:
 python3 vg.py 137
-
-python3 vgbs.py PCCG-00357
+python3 vg.py PCCG-00357

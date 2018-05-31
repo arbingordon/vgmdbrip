@@ -1,4 +1,4 @@
 {
-  "userid": "xxxx",
-  "password": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "username": "yourusername",
+  "password": "yourpassword"
 }
