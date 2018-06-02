@@ -11,7 +11,7 @@ requests
 
 setup:
 
-edit config.txt with your vgmdb username and password
+none: just log in normally when prompted, vgmdbrip will store your login/cookies in the same folder the script is in.
 
 
 usage:
