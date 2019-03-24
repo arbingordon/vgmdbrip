@@ -33,7 +33,7 @@ def login():
             'do': 'login',
             's': '',
             'securitytoken': 'guest'
-            })
+            }, verify=False)
             table = Soup(x.content).find('table', class_='tborder', width="70%")
             panel = table.find('div', class_='panel')
             message = panel.text.strip()
@@ -69,10 +69,10 @@ if(len(argv) < 2):
 login()
 soup = ""
 if(argv[1].isnumeric()):
-  soup = Soup(session.get("https://vgmdb.net/album/" + argv[1]).content)
+  soup = Soup(session.get("https://vgmdb.net/album/" + argv[1], verify=False).content)
 else:
   query = " ".join(argv[1:])
-  soup = Soup(session.get("https://vgmdb.net/search?q=\"" + query + "\"").content)
+  soup = Soup(session.get("https://vgmdb.net/search?q=\"" + query + "\"", verify=False).content)
   if(soup.title.text[:6] == "Search"):
     print("stuck at search results")
     exit(1)
@@ -80,7 +80,7 @@ print('Title: ' + soup.title.text)
 folder = "Scans (VGMdb)"
 gallery = soup.find("div", attrs={"class" : "covertab",
                                   "id" : "cover_gallery"})
-for scan in gallery.find_all("a"):
+for scan in gallery.find_all("a", attrs={"class" : "highslide"}):
   url = scan["href"]
   title = remove(scan.text.strip(), "\"*/:<>?\|")
   image = session.get(url).content
