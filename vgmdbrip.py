@@ -33,7 +33,7 @@ def login():
             'do': 'login',
             's': '',
             'securitytoken': 'guest'
-            }, verify=False)
+            })
             table = Soup(x.content).find('table', class_='tborder', width="70%")
             panel = table.find('div', class_='panel')
             message = panel.text.strip()
@@ -69,10 +69,10 @@ if(len(argv) < 2):
 login()
 soup = ""
 if(argv[1].isnumeric()):
-  soup = Soup(session.get("https://vgmdb.net/album/" + argv[1], verify=False).content)
+  soup = Soup(session.get("https://vgmdb.net/album/" + argv[1]).content)
 else:
   query = " ".join(argv[1:])
-  soup = Soup(session.get("https://vgmdb.net/search?q=\"" + query + "\"", verify=False).content)
+  soup = Soup(session.get("https://vgmdb.net/search?q=\"" + query + "\"").content)
   if(soup.title.text[:6] == "Search"):
     print("stuck at search results")
     exit(1)
